@@ -7,7 +7,7 @@ namespace quizApp
         public static void Main()
         {
             WriteLine("Welcome to my quiz app!");
-            databaseConnection.TestConnection();
+            databaseConnection.InitializeDatabase();
         }
     }
 }
