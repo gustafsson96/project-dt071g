@@ -1,2 +1,12 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using static System.Console;
+
+namespace quizApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            WriteLine("Welcome to my quiz app!");
+        }
+    }
+}
