@@ -25,11 +25,10 @@ namespace quizApp
                 using var connection = new SqliteConnection("Data Source=quiz.db");
                 connection.Open();
 
-                WriteLine("Connected to the SQLite database!");
+                WriteLine("Connected to the SQLite database...");
 
                 using var command = new SqliteCommand(sql, connection);
                 command.ExecuteNonQuery();
-                WriteLine("Table questions was created successfully!");
 
             }
             catch (SqliteException e)
@@ -40,7 +39,31 @@ namespace quizApp
 
         public static void InsertQuestion()
         {
-            
+                try
+    {
+        using var connection = new SqliteConnection("Data Source=quiz.db");
+        connection.Open();
+
+        var sql = @"INSERT INTO questions 
+                    (category, question, first_alternative, second_alternative, third_alternative, fourth_alternative, correct_alternative) 
+                    VALUES (@category, @question, @first, @second, @third, @fourth, @correct)";
+
+        using var command = new SqliteCommand(sql, connection);
+        command.Parameters.AddWithValue("@category", "General Knowledge");
+        command.Parameters.AddWithValue("@question", "What is the capital of France?");
+        command.Parameters.AddWithValue("@first", "Paris");
+        command.Parameters.AddWithValue("@second", "Rome");
+        command.Parameters.AddWithValue("@third", "Berlin");
+        command.Parameters.AddWithValue("@fourth", "Madrid");
+        command.Parameters.AddWithValue("@correct", 1); 
+
+        int result = command.ExecuteNonQuery();
+        WriteLine($"{result} question inserted successfully!");
+    }
+    catch (SqliteException e)
+    {
+        WriteLine($"Error inserting question: {e.Message}");
+    }
         }
     }
 }
