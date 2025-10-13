@@ -6,8 +6,17 @@ namespace quizApp
     {
         public static void Main()
         {
-            WriteLine("Welcome to my quiz app!");
-            databaseConnection.InitializeDatabase();
+            var running = true;
+
+            while (running)
+            {
+                WriteLine("Welcome to my quiz app!");
+                databaseConnection.InitializeDatabase();
+
+                string input = ReadLine()!;
+                if (input.ToLower() == "q") break;
+            }
+
         }
     }
 }
