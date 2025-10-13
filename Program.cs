@@ -8,7 +8,6 @@ namespace quizApp
         {
             WriteLine("Welcome to my quiz app!");
             databaseConnection.InitializeDatabase();
-            databaseConnection.InsertQuestion();
         }
     }
 }
