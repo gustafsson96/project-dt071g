@@ -7,7 +7,9 @@ namespace MovieQuiz
         public static void Main()
         {
             DatabaseConnection.InitializeDatabase();
-            
+
+            Menu menu = new Menu();
+            menu.ShowMenu();
         }
     }
 }

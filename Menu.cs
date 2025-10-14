@@ -12,22 +12,19 @@ namespace MovieQuiz
         {
             while (running)
             {
-                Clear();
                 WriteLine("**** QUIZ ****");
                 WriteLine("\nMenu: ");
-                WriteLine("1. Option 1");
-                WriteLine("2. Option 2");
-                WriteLine("3. Option 3");
-                WriteLine("4. Exit");
+                WriteLine("1. START THE QUIZ");
+                WriteLine("2. Exit");
+                WriteLine("(Type 'developer mode' to add questions)");
                 Write("\nChoose an option: ");
                 string choice = ReadLine()!;
 
-                switch (choice)
+                switch (choice.ToLower())
                 {
-                    case "1":
-                    case "2":
-                    case "3":
-                    case "4": running = false; break;
+                    case "1": WriteLine("You started the program!"); break;
+                    case "2": running = false; break;
+                    case "developer mode": running = false; DeveloperMode.DevMessage(); break;
                     default:
                         WriteLine("\nInvalid option, press any key to try again");
                         ReadKey();
