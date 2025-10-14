@@ -22,9 +22,16 @@ namespace MovieQuiz
 
                 switch (choice.ToLower())
                 {
-                    case "1": WriteLine("\nYou started the program!\n"); break;
-                    case "2": running = false; break;
-                    case "developer mode": running = false; DeveloperMode.DevMessage(); break;
+                    case "1":
+                        Quiz quiz = new Quiz();
+                        quiz.ShowAllQuestions();
+                        break;
+                    case "2":
+                        running = false;
+                        break;
+                    case "developer mode":
+                        DeveloperMode.DevMessage();
+                        break;
                     default:
                         WriteLine("\nInvalid option, press any key to try again");
                         ReadKey();
