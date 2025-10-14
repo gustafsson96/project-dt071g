@@ -24,7 +24,7 @@ namespace MovieQuiz
                 {
                     case "1":
                         Quiz quiz = new Quiz();
-                        quiz.ShowAllQuestions();
+                        quiz.StartQuiz();
                         break;
                     case "2":
                         running = false;
