@@ -6,17 +6,8 @@ namespace MovieQuiz
     {
         public static void Main()
         {
-            var running = true;
-
-            while (running)
-            {
-                WriteLine("Welcome to my quiz app!");
-                DatabaseConnection.InitializeDatabase();
-
-                string input = ReadLine()!;
-                if (input.ToLower() == "q") break;
-            }
-
+            DatabaseConnection.InitializeDatabase();
+            
         }
     }
 }
