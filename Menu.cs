@@ -10,6 +10,7 @@ namespace MovieQuiz
 
         public void ShowMenu()
         {
+            // Show menu with alternatives
             while (running)
             {
                 WriteLine("**** QUIZ ****");
@@ -22,13 +23,16 @@ namespace MovieQuiz
 
                 switch (choice.ToLower())
                 {
+                    // Start the quiz
                     case "1":
                         Quiz quiz = new Quiz();
                         quiz.StartQuiz();
                         break;
+                    // Exit
                     case "2":
                         running = false;
                         break;
+                    // Enter developer mode (FOR DEVELOPERS ONLY)
                     case "developer mode":
                         DeveloperMode.DevMessage();
                         break;

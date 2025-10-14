@@ -5,6 +5,7 @@ namespace MovieQuiz.Data
 {
     public static class QuestionRepository
     {
+        // Fetch all questions from the database
         public static List<Question> GetAllQuestions()
         {
             var questions = new List<Question>();
@@ -12,13 +13,16 @@ namespace MovieQuiz.Data
             try
 
             {
+                // Connect to the database
                 using var connection = new SqliteConnection("Data Source=quiz.db");
                 connection.Open();
 
+                // Select all questions
                 var sql = "SELECT * FROM questions";
                 using var command = new SqliteCommand(sql, connection);
                 using var reader = command.ExecuteReader();
 
+                // Read each row and create Question objects
                 while (reader.Read())
                 {
                     questions.Add(new Question
