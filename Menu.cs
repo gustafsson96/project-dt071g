@@ -22,7 +22,7 @@ namespace MovieQuiz
 
                 switch (choice.ToLower())
                 {
-                    case "1": WriteLine("You started the program!"); break;
+                    case "1": WriteLine("\nYou started the program!\n"); break;
                     case "2": running = false; break;
                     case "developer mode": running = false; DeveloperMode.DevMessage(); break;
                     default:
