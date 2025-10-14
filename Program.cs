@@ -1,6 +1,6 @@
 ﻿using static System.Console;
 
-namespace quizApp
+namespace MovieQuiz
 {
     public class Program
     {
@@ -11,7 +11,7 @@ namespace quizApp
             while (running)
             {
                 WriteLine("Welcome to my quiz app!");
-                databaseConnection.InitializeDatabase();
+                DatabaseConnection.InitializeDatabase();
 
                 string input = ReadLine()!;
                 if (input.ToLower() == "q") break;

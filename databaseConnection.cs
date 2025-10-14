@@ -1,9 +1,9 @@
 using static System.Console;
 using Microsoft.Data.Sqlite;
 
-namespace quizApp
+namespace MovieQuiz
 {
-    public class databaseConnection
+    public class DatabaseConnection
     {
         public static void InitializeDatabase()
         {
