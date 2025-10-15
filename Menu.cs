@@ -1,5 +1,6 @@
 // Classes for the menu
 
+using System.Text;
 using static System.Console;
 
 namespace MovieQuiz
@@ -14,6 +15,8 @@ namespace MovieQuiz
             while (running)
             {
                 WriteLine("**** QUIZ ****");
+                AsciiArt art = new AsciiArt();
+                art.collectArt();
                 WriteLine("\nMenu: ");
                 WriteLine("1. START THE QUIZ");
                 WriteLine("2. Exit");
