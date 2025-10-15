@@ -8,7 +8,12 @@ namespace MovieQuiz
         public void collectArt()
         {
             string movieArt = File.ReadAllText("asciiart.txt");
-            WriteLine(movieArt);
+
+            foreach(var c in movieArt)
+            {
+                Write(c);
+                Thread.Sleep(5);
+            }
         }
     }
 }
