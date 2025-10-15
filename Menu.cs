@@ -14,7 +14,6 @@ namespace MovieQuiz
             // Show menu with alternatives
             while (running)
             {
-                WriteLine("**** QUIZ ****");
                 AsciiArt art = new AsciiArt();
                 art.collectArt();
                 WriteLine("\nMenu: ");

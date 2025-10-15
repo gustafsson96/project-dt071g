@@ -7,12 +7,12 @@ namespace MovieQuiz
     {
         public void collectArt()
         {
-            string movieArt = File.ReadAllText("asciiart.txt");
+            string quizArt = File.ReadAllText("asciiart.txt");
 
-            foreach(var c in movieArt)
+            foreach(var c in quizArt)
             {
                 Write(c);
-                Thread.Sleep(5);
+                Thread.Sleep(4);
             }
         }
     }
