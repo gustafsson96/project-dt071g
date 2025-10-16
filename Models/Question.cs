@@ -1,4 +1,4 @@
-namespace MovieQuiz.Models
+namespace QuizApp.Models
 {
     // Represents a single question
     public class Question

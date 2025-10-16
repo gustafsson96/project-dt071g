@@ -1,7 +1,7 @@
 using static System.Console;
 using System.Threading;
 
-namespace MovieQuiz
+namespace QuizApp
 {
     public class AsciiArt
     {

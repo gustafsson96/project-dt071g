@@ -1,7 +1,7 @@
 using static System.Console;
 using Microsoft.Data.Sqlite;
 
-namespace MovieQuiz.Data
+namespace QuizApp.Data
 {
     public class DatabaseConnection
     {

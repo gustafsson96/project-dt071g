@@ -1,4 +1,4 @@
-namespace MovieQuiz
+namespace QuizApp
 {
     public class DeveloperMode
     {

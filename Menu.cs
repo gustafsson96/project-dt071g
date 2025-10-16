@@ -3,7 +3,7 @@
 using System.Text;
 using static System.Console;
 
-namespace MovieQuiz
+namespace QuizApp
 {
     public class Menu
     {

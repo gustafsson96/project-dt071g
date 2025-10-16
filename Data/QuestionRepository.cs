@@ -1,7 +1,7 @@
 using Microsoft.Data.Sqlite;
-using MovieQuiz.Models;
+using QuizApp.Models;
 
-namespace MovieQuiz.Data
+namespace QuizApp.Data
 {
     public static class QuestionRepository
     {

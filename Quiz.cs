@@ -1,8 +1,8 @@
 using Microsoft.VisualBasic;
-using MovieQuiz.Data;
+using QuizApp.Data;
 using static System.Console;
 
-namespace MovieQuiz
+namespace QuizApp
 {
     public class Quiz
     {

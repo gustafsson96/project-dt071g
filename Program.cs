@@ -1,7 +1,7 @@
 ﻿using static System.Console;
-using MovieQuiz.Data;
+using QuizApp.Data;
 
-namespace MovieQuiz
+namespace QuizApp
 {
     public class Program
     {
