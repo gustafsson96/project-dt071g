@@ -20,24 +20,26 @@ namespace QuizApp.Menus
                 WriteLine("3. GENERAL KNOWLEDGE");
                 WriteLine("4. MIXED");
                 Write("\nChoose an option: \n");
-                 Write("\nPress 'q' to go back");
+                Write("\nPress 'q' to go back");
                 string choice = ReadLine()!;
 
                 switch (choice.ToLower())
                 {
-                    // Start the quiz
                     case "1":
                         running = false;
+                        new Quiz().StartQuiz("movies");
                         break;
                     case "2":
                         running = false;
+                        new Quiz().StartQuiz("music");
                         break;
                     case "3":
                         running = false;
+                        new Quiz().StartQuiz("general");
                         break;
                     case "4":
-                        Quiz quiz = new Quiz();
-                        quiz.StartQuiz();
+                        running = false;
+                        new Quiz().StartQuiz("mixed");
                         break;
                     // Exit
                     case "q":

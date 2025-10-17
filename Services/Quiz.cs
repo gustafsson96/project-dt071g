@@ -1,5 +1,6 @@
 // QUIZ LOGIC
 
+using System.ComponentModel;
 using Microsoft.VisualBasic;
 using QuizApp.Data;
 using static System.Console;
@@ -9,9 +10,16 @@ namespace QuizApp.Services
     public class Quiz
     {
         // Method to start the quiz
-        public void StartQuiz()
+        public void StartQuiz(string category)
         {
+            // Get a list of all questions
             var questions = QuestionRepository.GetAllQuestions();
+
+            // Check if user picked a category other than mixed and filter questions list accordingly
+            if (category != "mixed")
+            {
+                questions = questions.Where(q => q.Category.ToLower() == category).ToList();
+            }
 
             // Check if there are questions in the database
             if (questions.Count == 0)

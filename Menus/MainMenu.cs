@@ -26,8 +26,8 @@ namespace QuizApp.Menus
                 {
                     // Start the quiz
                     case "1":
-                        Quiz quiz = new Quiz();
-                        quiz.StartQuiz();
+                        GameMenu gameMenu = new GameMenu();
+                        gameMenu.ShowGameMenu();
                         break;
                     // Exit
                     case "2":
