@@ -1,8 +1,9 @@
-// Game Menu
+// GAME MENU
 
 using static System.Console;
+using QuizApp.Services;
 
-namespace QuizApp
+namespace QuizApp.Menus
 {
     public class GameMenu
     {

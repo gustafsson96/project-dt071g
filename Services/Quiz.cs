@@ -1,8 +1,10 @@
+// QUIZ LOGIC
+
 using Microsoft.VisualBasic;
 using QuizApp.Data;
 using static System.Console;
 
-namespace QuizApp
+namespace QuizApp.Services
 {
     public class Quiz
     {

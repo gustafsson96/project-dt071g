@@ -1,7 +1,7 @@
 using static System.Console;
 using System.Threading;
 
-namespace QuizApp
+namespace QuizApp.Utilities
 {
     public class AsciiArt
     {

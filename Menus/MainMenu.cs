@@ -1,9 +1,10 @@
-// Classes for the menu
+// MAIN MENU
 
 using System.Text;
 using static System.Console;
+using QuizApp.Services;
 
-namespace QuizApp
+namespace QuizApp.Menus
 {
     public class MainMenu
     {
@@ -34,7 +35,7 @@ namespace QuizApp
                         break;
                     // Enter developer mode (FOR DEVELOPERS ONLY)
                     case "developer mode":
-                        DeveloperMode.DevMessage();
+                        running = false;
                         break;
                     default:
                         WriteLine("\nInvalid option, press any key to try again");
