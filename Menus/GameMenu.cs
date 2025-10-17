@@ -14,13 +14,14 @@ namespace QuizApp.Menus
             // Show menu with alternatives
             while (running)
             {
+                Clear();
                 WriteLine("\nPICK A CATEGORY: ");
                 WriteLine("1. MOVIES");
                 WriteLine("2. MUSIC");
                 WriteLine("3. GENERAL KNOWLEDGE");
                 WriteLine("4. MIXED");
-                Write("\nChoose an option: \n");
-                Write("\nPress 'q' to go back");
+                Write("\nPress 'q' to go back\n");
+                Write("\nChoose an option: ");
                 string choice = ReadLine()!;
 
                 switch (choice.ToLower())
@@ -44,6 +45,7 @@ namespace QuizApp.Menus
                     // Exit
                     case "q":
                         running = false;
+                        Clear();
                         break;
                     default:
                         WriteLine("\nInvalid option, press any key to try again");
