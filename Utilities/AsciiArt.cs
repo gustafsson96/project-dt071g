@@ -7,7 +7,7 @@ namespace QuizApp.Utilities
     {
         public void collectArt()
         {
-            string quizArt = File.ReadAllText("asciiart.txt");
+            string quizArt = File.ReadAllText("Utilities/asciiart.txt");
 
             foreach(var c in quizArt)
             {
