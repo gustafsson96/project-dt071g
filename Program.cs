@@ -11,8 +11,8 @@ namespace QuizApp
             DatabaseConnection.InitializeDatabase();
 
             // Show the menu
-            Menu menu = new Menu();
-            menu.ShowMenu();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.ShowMenu();
         }
     }
 }

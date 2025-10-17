@@ -5,7 +5,7 @@ using static System.Console;
 
 namespace QuizApp
 {
-    public class Menu
+    public class MainMenu
     {
         bool running = true;
 
