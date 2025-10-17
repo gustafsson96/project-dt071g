@@ -76,7 +76,6 @@ namespace QuizApp.Services
             }
 
             // Present score to user when quiz is finished
-            // Short delay with simple loading effect before next question is displayed
             WriteLine("\nQuiz finished! Calculating your results ");
             for (int i = 0; i < 12; i++)
             {
