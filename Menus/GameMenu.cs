@@ -36,7 +36,7 @@ namespace QuizApp.Menus
                         break;
                     case "3":
                         running = false;
-                        new Quiz().StartQuiz("general");
+                        new Quiz().StartQuiz("general knowledge");
                         break;
                     case "4":
                         running = false;
