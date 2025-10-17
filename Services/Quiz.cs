@@ -71,12 +71,12 @@ namespace QuizApp.Services
                     WriteLine($"\nWrong, the correct answer was: {q.Options[q.CorrectOption - 1]}");
                 }
 
-                Write("\nPress any key for next question");
+                Write("\nPress any key to continue");
                 ReadKey();
             }
 
             // Present score to user when quiz is finished
-            WriteLine("\nQuiz finished! Calculating your results ");
+            WriteLine("\n\nQuiz finished! Calculating your results ");
             for (int i = 0; i < 12; i++)
             {
                 Write(".");
@@ -87,7 +87,7 @@ namespace QuizApp.Services
 
             while (true)
             {
-                Write("\nDo you want to play again? (y/n)");
+                Write("\nDo you want to play again? (y/n): ");
                 string input = ReadLine()!.Trim().ToLower();
 
                 if (input == "y")
@@ -99,11 +99,12 @@ namespace QuizApp.Services
                 else if (input == "n")
                 {
                     WriteLine("\nReturning to menu ");
-                    for (int i = 0; i < 8; i++)
+                    for (int i = 0; i < 7; i++)
                     {
                         Write(".");
                         Thread.Sleep(350);
                     }
+                    Clear();
                     break;
                 }
                 else
