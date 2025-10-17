@@ -4,6 +4,8 @@ using System.ComponentModel;
 using Microsoft.VisualBasic;
 using QuizApp.Data;
 using static System.Console;
+using System.Threading;
+using QuizApp.Menus;
 
 namespace QuizApp.Services
 {
@@ -40,7 +42,7 @@ namespace QuizApp.Services
             foreach (var q in quizQuestions)
             {
                 Clear();
-                WriteLine($"[Category: {q.Category}]\n");
+                WriteLine($"[Category: {q.Category}]");
                 WriteLine($"\n{q.Text}\n");
 
                 // Loop through and present the alternatives for a question
@@ -61,26 +63,55 @@ namespace QuizApp.Services
                 // Check if answer is correct and update score accordingly
                 if (answer == q.CorrectOption)
                 {
-                    WriteLine("Correct!");
+                    WriteLine("\nCorrect!");
                     score++;
                 }
                 else
                 {
-                    WriteLine($"Wrong, the correct answer was: {q.Options[q.CorrectOption - 1]}");
+                    WriteLine($"\nWrong, the correct answer was: {q.Options[q.CorrectOption - 1]}");
                 }
 
-                // Keep playing by pressing a button
-                WriteLine("\nPress any key for the next question...");
+                Write("\nPress any key for next question");
                 ReadKey();
-
-
             }
 
             // Present score to user when quiz is finished
+            // Short delay with simple loading effect before next question is displayed
+            WriteLine("\nQuiz finished! Calculating your results ");
+            for (int i = 0; i < 12; i++)
+            {
+                Write(".");
+                Thread.Sleep(380);
+            }
             Clear();
-            WriteLine($"Quiz finished! Your score: {score}/{quizQuestions.Count}");
-            WriteLine("Press any key to return to the menu...");
-            ReadKey();
+            WriteLine($"Your scored: {score}/{quizQuestions.Count}\n");
+
+            while (true)
+            {
+                Write("\nDo you want to play again? (y/n)");
+                string input = ReadLine()!.Trim().ToLower();
+
+                if (input == "y")
+                {
+                    GameMenu gameMenu = new GameMenu();
+                    gameMenu.ShowGameMenu();
+                    break;
+                }
+                else if (input == "n")
+                {
+                    WriteLine("\nReturning to menu ");
+                    for (int i = 0; i < 8; i++)
+                    {
+                        Write(".");
+                        Thread.Sleep(350);
+                    }
+                    break;
+                }
+                else
+                {
+                    WriteLine("Invalid input. Please type 'y' or 'n'.");
+                }
+            }
         }
 
         // Method to show all questions (to test that it works)
