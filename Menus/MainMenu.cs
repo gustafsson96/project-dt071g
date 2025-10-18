@@ -17,7 +17,7 @@ namespace QuizApp.Menus
             {
                 WriteLine("\nMenu: ");
                 WriteLine("1. START THE QUIZ");
-                WriteLine("2. Exit");
+                WriteLine("2. EXIT");
                 WriteLine("(Type 'developer mode' to add questions)");
                 Write("\nChoose an option: ");
                 string choice = ReadLine()!;
@@ -35,7 +35,8 @@ namespace QuizApp.Menus
                         break;
                     // Enter developer mode (FOR DEVELOPERS ONLY)
                     case "developer mode":
-                        running = false;
+                        DeveloperMenu developerMenu = new DeveloperMenu();
+                        developerMenu.ShowDeveloperMenu();
                         break;
                     default:
                         WriteLine("\nInvalid option, press any key to try again");
