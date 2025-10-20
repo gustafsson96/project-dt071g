@@ -1,5 +1,6 @@
 using Microsoft.Data.Sqlite;
 using QuizApp.Models;
+using static System.Console;
 
 namespace QuizApp.Data
 {
@@ -48,5 +49,39 @@ namespace QuizApp.Data
 
             return questions;
         }
+
+        // Method to insert question into the database
+        public static void InsertQuestion(Question question)
+        {
+            try
+            {
+            // Create and open a connection to the database
+            using var connection = new SqliteConnection("Data Source=quiz.db");
+            connection.Open();
+
+            // SQL query to insert a new question
+            var sql = @"INSERT INTO questions (category, question, first_alternative, second_alternative, third_alternative, fourth_alternative, correct_alternative)
+            VALUES (@category, @question, @first, @second, @third, @fourth, @correct)";
+
+            // Create a command and bind the parameters to user input (data from the Question object)
+            using var command = new SqliteCommand(sql, connection);
+            command.Parameters.AddWithValue("@category", question.Category);
+            command.Parameters.AddWithValue("@question", question.Text);
+            command.Parameters.AddWithValue("@first", question.Options[0]);
+            command.Parameters.AddWithValue("@second", question.Options[1]);
+            command.Parameters.AddWithValue("@third", question.Options[2]);
+            command.Parameters.AddWithValue("@fourth", question.Options[3]);
+            command.Parameters.AddWithValue("@correct", question.CorrectOption);
+
+            // Execute the command to insert a new question
+            command.ExecuteNonQuery();
+
+            WriteLine("Question added successfully.");
+        }
+        catch (SqliteException e)
+        {
+            WriteLine(e.Message);
+        }
     }
+}
 }

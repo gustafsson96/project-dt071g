@@ -11,6 +11,8 @@ namespace QuizApp.Menus
 
         public void ShowDeveloperMenu()
         {
+            QuizServices quizServices = new QuizServices();
+
             // Show menu with alternatives
             while (running)
             {
@@ -27,12 +29,11 @@ namespace QuizApp.Menus
                 {
                     case "1":
                         Clear();
-                        QuizServices quizServices = new QuizServices();
                         quizServices.ShowAllQuestions(); 
                         break;
                     case "2":
-                        running = false;
-                        WriteLine("\nAdd new question\n");
+                        Clear();
+                        quizServices.AddQuestion();
                         break;
                     case "3":
                         running = false;
