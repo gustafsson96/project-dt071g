@@ -36,8 +36,8 @@ namespace QuizApp.Menus
                         quizServices.AddQuestion();
                         break;
                     case "3":
-                        running = false;
-                        WriteLine("\nDelete a question\n");
+                        Clear();
+                        quizServices.DeleteQuestion();
                         break;
                     // Exit
                     case "q":

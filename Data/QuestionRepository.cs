@@ -44,7 +44,7 @@ namespace QuizApp.Data
             }
             catch (SqliteException e)
             {
-                Console.WriteLine($"Error fetching questions: {e.Message}");
+                WriteLine($"Error fetching questions: {e.Message}");
             }
 
             return questions;
@@ -55,33 +55,66 @@ namespace QuizApp.Data
         {
             try
             {
-            // Create and open a connection to the database
-            using var connection = new SqliteConnection("Data Source=quiz.db");
-            connection.Open();
+                // Create and open a connection to the database
+                using var connection = new SqliteConnection("Data Source=quiz.db");
+                connection.Open();
 
-            // SQL query to insert a new question
-            var sql = @"INSERT INTO questions (category, question, first_alternative, second_alternative, third_alternative, fourth_alternative, correct_alternative)
+                // SQL query to insert a new question
+                var sql = @"INSERT INTO questions (category, question, first_alternative, second_alternative, third_alternative, fourth_alternative, correct_alternative)
             VALUES (@category, @question, @first, @second, @third, @fourth, @correct)";
 
-            // Create a command and bind the parameters to user input (data from the Question object)
-            using var command = new SqliteCommand(sql, connection);
-            command.Parameters.AddWithValue("@category", question.Category);
-            command.Parameters.AddWithValue("@question", question.Text);
-            command.Parameters.AddWithValue("@first", question.Options[0]);
-            command.Parameters.AddWithValue("@second", question.Options[1]);
-            command.Parameters.AddWithValue("@third", question.Options[2]);
-            command.Parameters.AddWithValue("@fourth", question.Options[3]);
-            command.Parameters.AddWithValue("@correct", question.CorrectOption);
+                // Create a command and bind the parameters to user input (data from the Question object)
+                using var command = new SqliteCommand(sql, connection);
+                command.Parameters.AddWithValue("@category", question.Category);
+                command.Parameters.AddWithValue("@question", question.Text);
+                command.Parameters.AddWithValue("@first", question.Options[0]);
+                command.Parameters.AddWithValue("@second", question.Options[1]);
+                command.Parameters.AddWithValue("@third", question.Options[2]);
+                command.Parameters.AddWithValue("@fourth", question.Options[3]);
+                command.Parameters.AddWithValue("@correct", question.CorrectOption);
 
-            // Execute the command to insert a new question
-            command.ExecuteNonQuery();
+                // Execute the command to insert a new question
+                command.ExecuteNonQuery();
 
-            WriteLine("Question added successfully.");
+                WriteLine("Question added successfully.");
+            }
+            catch (SqliteException e)
+            {
+                WriteLine(e.Message);
+            }
         }
-        catch (SqliteException e)
+
+        public static void DeleteQuestion(int id)
         {
-            WriteLine(e.Message);
+            try
+            {
+                // Create and open a connection to the database
+                using var connection = new SqliteConnection("Data Source=quiz.db");
+                connection.Open();
+
+                // SQL query to delete a question based on id
+                var sql = "DELETE FROM questions WHERE id = @id";
+
+                using var command = new SqliteCommand(sql, connection);
+                command.Parameters.AddWithValue("@id", id);
+
+                // Execute the command to delete a question
+                int rows = command.ExecuteNonQuery();
+
+                if (rows > 0)
+                {
+                    Clear();
+                    WriteLine($"Question with ID {id} was deleted successfully\n");
+                }
+                else
+                {
+                    WriteLine("No question found with that ID.");
+                }
+            }
+            catch (SqliteException e)
+            {
+                WriteLine(e.Message);
+            }
         }
     }
-}
 }
