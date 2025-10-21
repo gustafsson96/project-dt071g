@@ -36,7 +36,7 @@ namespace QuizApp.Menus
                     // Enter developer mode (FOR DEVELOPERS ONLY)
                     case "developer mode":
                         DeveloperMenu developerMenu = new DeveloperMenu();
-                        developerMenu.ShowDeveloperMenu();
+                        developerMenu.ValidatePassword();
                         break;
                     default:
                         WriteLine("\nInvalid option, press any key to try again");
