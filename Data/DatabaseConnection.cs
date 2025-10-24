@@ -10,14 +10,14 @@ namespace QuizApp.Data
             // SQL command to create a table for storing quiz questions
             var sql = @"CREATE TABLE IF NOT EXISTS questions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            category TEXT NOT NULL,
-            question TEXT NOT NULL,
-            first_alternative TEXT NOT NULL,
-            second_alternative TEXT NOT NULL,
-            third_alternative TEXT NOT NULL,
-            fourth_alternative TEXT NOT NULL,
-            correct_alternative INTEGER NOT NULL
-        )";
+            category TEXT NOT NULL CHECK (trim(category) <> ''),
+            question TEXT NOT NULL CHECK (trim(question) <> ''),
+            first_alternative TEXT NOT NULL CHECK (trim(first_alternative) <> ''),
+            second_alternative TEXT NOT NULL CHECK (trim(second_alternative) <> ''),
+            third_alternative TEXT NOT NULL CHECK (trim(third_alternative) <> ''),
+            fourth_alternative TEXT NOT NULL CHECK (trim(fourth_alternative) <> ''),
+            correct_alternative INTEGER NOT NULL CHECK (correct_alternative BETWEEN 1 AND 4)
+)";
 
             /* 
                 Create new conenction in try catch block
@@ -42,13 +42,6 @@ namespace QuizApp.Data
                 // Print error message
                 WriteLine(e.Message);
             }
-        }
-
-        // A TEST CLASS to see if inserting a question to the database works
-        public static void InsertQuestion()
-        {
-
-
         }
     }
 }

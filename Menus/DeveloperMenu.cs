@@ -8,33 +8,34 @@ namespace QuizApp.Menus
     public class DeveloperMenu
     {
         // Method to simulate a password check to enter developer mode
-        public void ValidatePassword() {
+        public void ValidatePassword()
+        {
 
             Clear();
 
-            while (true) 
+            while (true)
             {
-            Write("Insert developer password (or press 'q' to go back): ");
-            string passwordInput = ReadLine();
+                Write("Insert developer password (or press 'q' to go back): ");
+                string passwordInput = ReadLine()!;
 
-            if (passwordInput.ToLower() == "q") // Give user the option to return to main menu
-            {
-                Clear();
-                return;
-            } else if (passwordInput == "password123") // Password created only to demonstrate the idea of a password check
-            {
-                Clear();
-                ShowDeveloperMenu();
-                break;
-            } else
-            {
-                Clear();
-                WriteLine("Access denied. Try again.\n");
-            }
+                if (passwordInput.ToLower() == "q") // Give user the option to return to main menu
+                {
+                    Clear();
+                    return;
+                }
+                else if (passwordInput == "password123") // Password created only to demonstrate the idea of a password check
+                {
+                    Clear();
+                    ShowDeveloperMenu();
+                    break;
+                }
+                else
+                {
+                    Clear();
+                    WriteLine("Access denied. Try again.\n");
+                }
             }
         }
-
-
 
         public void ShowDeveloperMenu()
         {
@@ -58,7 +59,7 @@ namespace QuizApp.Menus
                 {
                     case "1":
                         Clear();
-                        quizServices.ShowAllQuestions(); 
+                        quizServices.ShowAllQuestions();
                         break;
                     case "2":
                         Clear();

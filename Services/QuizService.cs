@@ -34,9 +34,20 @@ namespace QuizApp.Services
             // Prompt for user input to add new question
             Write("\nEnter category: ");
             string category = ReadLine()!;
+            while (string.IsNullOrWhiteSpace(category))
+            {
+                Write("Category cannot be empty. Please enter again: ");
+                category = ReadLine()!;
+            }
 
             Write("\nEnter question text: ");
             string questionText = ReadLine()!;
+            while (string.IsNullOrWhiteSpace(questionText))
+            {
+                Write("Question text cannot be empty. Please enter again: ");
+                questionText = ReadLine()!;
+            }
+
 
             // Create an array to store the four answer options
             var options = new string[4];
@@ -44,6 +55,11 @@ namespace QuizApp.Services
             {
                 Write($"Enter option {i + 1}: ");
                 options[i] = ReadLine()!;
+                while (string.IsNullOrWhiteSpace(options[i]))
+                {
+                    Write($"Option {i + 1} cannot be empty. Please enter again: ");
+                    options[i] = ReadLine()!;
+                }
             }
 
             // Ask for correct option

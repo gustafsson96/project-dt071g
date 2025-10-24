@@ -53,6 +53,14 @@ namespace QuizApp.Data
         // Method to insert question into the database
         public static void InsertQuestion(Question question)
         {
+            if (string.IsNullOrWhiteSpace(question.Category) ||
+            string.IsNullOrWhiteSpace(question.Text) ||
+            question.Options.Any(option => string.IsNullOrWhiteSpace(option)))
+            {
+                WriteLine("Error: Question contains empty fields and was not saved.");
+                return;
+            }
+
             try
             {
                 // Create and open a connection to the database
