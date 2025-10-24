@@ -8,17 +8,24 @@ namespace QuizApp.Menus
 {
     public class MainMenu
     {
-        bool running = true;
-
         public void ShowMainMenu()
         {
-            // Show menu with alternatives
+            // Local method to print menu alternatives
+            void PrintMenu()
+            {
+                {
+                    WriteLine("\nMenu: ");
+                    WriteLine("1. START THE QUIZ");
+                    WriteLine("2. EXIT");
+                    WriteLine("(Type 'developer mode' to add questions)");
+                }
+            }
+
+            PrintMenu();
+
+            bool running = true;
             while (running)
             {
-                WriteLine("\nMenu: ");
-                WriteLine("1. START THE QUIZ");
-                WriteLine("2. EXIT");
-                WriteLine("(Type 'developer mode' to add questions)");
                 Write("\nChoose an option: ");
                 string choice = ReadLine()!;
 
@@ -28,6 +35,7 @@ namespace QuizApp.Menus
                     case "1":
                         GameMenu gameMenu = new GameMenu();
                         gameMenu.ShowGameMenu();
+                        PrintMenu();
                         break;
                     // Exit
                     case "2":
@@ -37,10 +45,10 @@ namespace QuizApp.Menus
                     case "developer mode":
                         DeveloperMenu developerMenu = new DeveloperMenu();
                         developerMenu.ShowDeveloperMenu();
+                        PrintMenu();
                         break;
                     default:
-                        WriteLine("\nInvalid option, press any key to try again");
-                        ReadKey();
+                        WriteLine("\nInvalid option, please try again");
                         break;
                 }
             }
