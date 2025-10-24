@@ -2,47 +2,19 @@
 
 using static System.Console;
 using QuizApp.Services;
+using QuizApp.Security;
 
 namespace QuizApp.Menus
 {
     public class DeveloperMenu
     {
-        // Method to simulate a password check to enter developer mode
-        public void ValidatePassword()
-        {
-
-            Clear();
-
-            while (true)
-            {
-                Write("Insert developer password (or press 'q' to go back): ");
-                string passwordInput = ReadLine()!;
-
-                if (passwordInput.ToLower() == "q") // Give user the option to return to main menu
-                {
-                    Clear();
-                    return;
-                }
-                else if (passwordInput == "password123") // Password created only to demonstrate the idea of a password check
-                {
-                    Clear();
-                    ShowDeveloperMenu();
-                    break;
-                }
-                else
-                {
-                    Clear();
-                    WriteLine("Access denied. Try again.\n");
-                }
-            }
-        }
-
+        QuizServices quizServices = new QuizServices();
+        DeveloperAccess access = new DeveloperAccess();
         public void ShowDeveloperMenu()
         {
+            if (!access.RequestAccess()) return; // Make sure access is granted via DeveloperAcess method
+
             bool running = true;
-
-            QuizServices quizServices = new QuizServices();
-
             // Show menu with alternatives
             while (running)
             {
