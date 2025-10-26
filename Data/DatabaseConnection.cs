@@ -30,8 +30,6 @@ namespace QuizApp.Data
                 using var connection = new SqliteConnection("Data Source=quiz.db");
                 connection.Open();
 
-                WriteLine("Connected to the SQLite database...");
-
                 // Execute the SQL command to create the questions table in quiz.db (if it doesn't exist)
                 using var command = new SqliteCommand(sql, connection);
                 command.ExecuteNonQuery();
