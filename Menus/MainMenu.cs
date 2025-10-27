@@ -3,6 +3,7 @@
 using System.Text;
 using static System.Console;
 using QuizApp.Services;
+using QuizApp.Utilities;
 
 namespace QuizApp.Menus
 {
@@ -16,7 +17,8 @@ namespace QuizApp.Menus
                 {
                     WriteLine("\nMENU\n");
                     WriteLine("1. START THE QUIZ");
-                    WriteLine("2. EXIT");
+                    WriteLine("2. INSTRUCTIONS");
+                    WriteLine("3. EXIT");
                     WriteLine("\n(For developers: type 'devmode' to manage questions)");
                 }
             }
@@ -38,8 +40,14 @@ namespace QuizApp.Menus
                         gameMenu.ShowGameMenu();
                         PrintMenu();
                         break;
-                    // Exit
+                    // Print instructions
                     case "2":
+                        GameInstructions gameInstructions = new GameInstructions();
+                        gameInstructions.ShowInstructions();
+                        PrintMenu();
+                        break;
+                    // Exit
+                    case "3":
                         running = false;
                         break;
                     // Enter developer mode (FOR DEVELOPERS ONLY)
