@@ -1,27 +1,21 @@
 // QUIZ LOGIC
 
-using System.ComponentModel;
-using Microsoft.VisualBasic;
 using QuizApp.Data;
+using QuizApp.Menus;
 using static System.Console;
 using System.Threading;
-using QuizApp.Menus;
 
 namespace QuizApp.Services
 {
     public class QuizGame
     {
-        // Method to start the quiz
+        private readonly Random random = new Random();
+
+        // Method to start quiz for the selected category
         public void StartQuiz(string category)
         {
             // Get a list of all questions
-            var questions = QuestionRepository.GetAllQuestions();
-
-            // Check if user picked a category other than mixed and filter questions list accordingly
-            if (category != "mixed")
-            {
-                questions = questions.Where(q => q.Category.ToLower() == category).ToList();
-            }
+            var questions = LoadQuestions(category);
 
             // Check if there are questions in the database
             if (questions.Count == 0)
@@ -31,36 +25,46 @@ namespace QuizApp.Services
                 return;
             }
 
-            // Shuffle questions and take 10 for this round
-            var random = new Random();
+            // Select 10 random questions for current round
             var quizQuestions = questions.OrderBy(q => random.Next()).Take(10).ToList();
 
-            // Variable to store the user's points
+            // Run the quiz and calculate the score
+            int score = PlayQuiz(quizQuestions);
+
+            // Show the final score and ask if user wants to play again
+            ShowResults(score, quizQuestions.Count);
+            AskToPlayAgain();
+        }
+
+        // Method to load all questions and filter by category if needed
+        private List<Models.Question> LoadQuestions(string category)
+        {
+            var questions = QuestionRepository.GetAllQuestions();
+
+            if (category != "mixed")
+            {
+                questions = questions.Where(q => q.Category.ToLower() == category).ToList();
+            }
+
+            return questions;
+        }
+
+        // Method to loop through the selected questions and present them to user
+        private int PlayQuiz(List<Models.Question> questions)
+        {
             int score = 0;
 
-            // Loop through the questions 
-            foreach (var q in quizQuestions)
+            foreach (var q in questions)
             {
                 Clear();
                 WriteLine($"[Category: {q.Category}]");
                 WriteLine($"\n{q.Text}\n");
 
-                // Loop through and present the alternatives for a question
                 for (int i = 0; i < q.Options.Length; i++)
-                {
                     WriteLine($"  {i + 1}. {q.Options[i]}");
-                }
 
-                // User input
-                Write("\nYour answer: ");
-                int answer;
-                // Ensure user input is valid
-                while (!int.TryParse(ReadLine(), out answer) || answer < 1 || answer > q.Options.Length)
-                {
-                    Write("Invalid input, try again: ");
-                }
+                int answer = GetAnswer(q.Options.Length);
 
-                // Check if answer is correct and update score accordingly
                 if (answer == q.CorrectOption)
                 {
                     WriteLine("\nCorrect!");
@@ -75,7 +79,27 @@ namespace QuizApp.Services
                 ReadKey();
             }
 
-            // Present score to user when quiz is finished
+            return score;
+        }
+
+        // Method to read and validate user input
+        private int GetAnswer(int numberOfOptions)
+        {
+            Write("\nYour answer: ");
+            int answer;
+
+            while (!int.TryParse(ReadLine(), out answer) || answer < 1 || answer > numberOfOptions)
+            {
+                Write("Invalid input, try again: ");
+            }
+
+            return answer;
+
+        }
+
+        // Method to display final score with simulated animation
+        private void ShowResults(int score, int total)
+        {
             WriteLine("\n\nQuiz finished! Calculating your results ");
             for (int i = 0; i < 12; i++)
             {
@@ -83,8 +107,12 @@ namespace QuizApp.Services
                 Thread.Sleep(380);
             }
             Clear();
-            WriteLine($"Your scored: {score}/{quizQuestions.Count}\n");
+            WriteLine($"You scored: {score}/{total}\n");
+        }
 
+        // Method to ask if user wants to play again (restart quiz or return to menu)
+        private void AskToPlayAgain()
+        {
             while (true)
             {
                 Write("\nDo you want to play again? (y/n): ");
@@ -92,8 +120,7 @@ namespace QuizApp.Services
 
                 if (input == "y")
                 {
-                    GameMenu gameMenu = new GameMenu();
-                    gameMenu.ShowGameMenu();
+                    new GameMenu().ShowGameMenu();
                     break;
                 }
                 else if (input == "n")
@@ -113,6 +140,5 @@ namespace QuizApp.Services
                 }
             }
         }
-
     }
 }
