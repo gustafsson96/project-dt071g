@@ -28,19 +28,19 @@ namespace QuizApp.Menus
                 {
                     case "1":
                         running = false;
-                        new Quiz().StartQuiz("movies");
+                        new QuizGame().StartQuiz("movies");
                         break;
                     case "2":
                         running = false;
-                        new Quiz().StartQuiz("music");
+                        new QuizGame().StartQuiz("music");
                         break;
                     case "3":
                         running = false;
-                        new Quiz().StartQuiz("general knowledge");
+                        new QuizGame().StartQuiz("general knowledge");
                         break;
                     case "4":
                         running = false;
-                        new Quiz().StartQuiz("mixed");
+                        new QuizGame().StartQuiz("mixed");
                         break;
                     // Exit
                     case "q":

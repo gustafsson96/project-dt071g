@@ -9,7 +9,7 @@ using QuizApp.Menus;
 
 namespace QuizApp.Services
 {
-    public class Quiz
+    public class QuizGame
     {
         // Method to start the quiz
         public void StartQuiz(string category)
