@@ -14,14 +14,15 @@ namespace QuizApp.Menus
             void PrintMenu()
             {
                 {
-                    WriteLine("\nMenu: ");
+                    WriteLine("\nMENU\n");
                     WriteLine("1. START THE QUIZ");
                     WriteLine("2. EXIT");
-                    WriteLine("(Type 'developer mode' to add questions)");
+                    WriteLine("\n(For developers: type 'devmode' to manage questions)");
                 }
             }
 
             PrintMenu();
+
 
             bool running = true;
             while (running)
@@ -42,7 +43,7 @@ namespace QuizApp.Menus
                         running = false;
                         break;
                     // Enter developer mode (FOR DEVELOPERS ONLY)
-                    case "developer mode":
+                    case "devmode":
                         DeveloperMenu developerMenu = new DeveloperMenu();
                         developerMenu.ShowDeveloperMenu();
                         PrintMenu();

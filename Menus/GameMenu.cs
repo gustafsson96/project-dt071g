@@ -15,7 +15,7 @@ namespace QuizApp.Menus
             while (running)
             {
                 Clear();
-                WriteLine("\nPICK A CATEGORY: ");
+                WriteLine("\nPICK A CATEGORY\n");
                 WriteLine("1. MOVIES");
                 WriteLine("2. MUSIC");
                 WriteLine("3. GENERAL KNOWLEDGE");
