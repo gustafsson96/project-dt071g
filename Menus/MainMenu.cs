@@ -1,17 +1,15 @@
-// MAIN MENU
-
-using System.Text;
 using static System.Console;
-using QuizApp.Services;
 using QuizApp.Utilities;
 
 namespace QuizApp.Menus
 {
+    // Handles the main menu of the quiz application
     public class MainMenu
     {
+        // Shows the main menu and handles user input
         public void ShowMainMenu()
         {
-            // Local method to print menu alternatives
+            // Local method to print menu options
             void PrintMenu()
             {
                 {
@@ -23,8 +21,8 @@ namespace QuizApp.Menus
                 }
             }
 
+            // Display the menu at first
             PrintMenu();
-
 
             bool running = true;
             while (running)
@@ -46,11 +44,11 @@ namespace QuizApp.Menus
                         gameInstructions.ShowInstructions();
                         PrintMenu();
                         break;
-                    // Exit
+                    // Exit the application
                     case "3":
                         running = false;
                         break;
-                    // Enter developer mode (FOR DEVELOPERS ONLY)
+                    // Enter developer mode
                     case "devmode":
                         DeveloperMenu developerMenu = new DeveloperMenu();
                         developerMenu.ShowDeveloperMenu();

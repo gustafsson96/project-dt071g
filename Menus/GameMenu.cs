@@ -1,19 +1,19 @@
-// GAME MENU
-
 using static System.Console;
 using QuizApp.Services;
 
 namespace QuizApp.Menus
 {
+    // Handles the menu to start the quiz
     public class GameMenu
     {
         bool running = true;
 
+        // Displays the category menu and starts the quiz based on user selection
         public void ShowGameMenu()
         {
-            // Show menu with alternatives
             while (running)
             {
+                // Game alternatives
                 Clear();
                 WriteLine("\nPICK A CATEGORY\n");
                 WriteLine("1. MOVIES");
@@ -26,23 +26,27 @@ namespace QuizApp.Menus
 
                 switch (choice.ToLower())
                 {
+                    // Movie category
                     case "1":
                         running = false;
                         new QuizGame().StartQuiz("movies");
                         break;
+                    // Music category
                     case "2":
                         running = false;
                         new QuizGame().StartQuiz("music");
                         break;
+                    // General knowledge category
                     case "3":
                         running = false;
                         new QuizGame().StartQuiz("general knowledge");
                         break;
+                    // Questions mixed from all categories
                     case "4":
                         running = false;
                         new QuizGame().StartQuiz("mixed");
                         break;
-                    // Exit
+                    // Exit and return to main menu
                     case "q":
                         running = false;
                         Clear();
