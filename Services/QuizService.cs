@@ -65,7 +65,7 @@ namespace QuizApp.Services
                 }
             }
 
-            
+
             // Prompt for the number of the correct option
             int correctOption;
             while (true)
@@ -118,13 +118,21 @@ namespace QuizApp.Services
             int idToDelete;
             while (true)
             {
-                Write("\nEnter the ID of the question you want to delete: ");
-                if (int.TryParse(ReadLine(), out idToDelete))
+                Write("\nEnter the ID of the question you want to delete (or 'q' to return): ");
+                string input = ReadLine()!;
+
+                if (input.Trim().ToLower() == "q")
+                {
+                    // Return to the menu without deleting
+                    return;
+                }
+
+                if (int.TryParse(input, out idToDelete))
                 {
                     break;
                 }
 
-                Write("Invalid input. Please enter a number");
+                WriteLine("Invalid input.");
             }
 
             // Delete the question from the database
