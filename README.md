@@ -2,7 +2,7 @@
 
 ## Overview
 QuizApp is a console-based quiz applicaiton created using C#.NET with a SQLite database, and it makes up my final project for the course 
-"Programmering in C#.NET" at Webbutvecklingsprogrammet, Mittuniversitetet. Users can play the quiz based on categories and developers can manage the questions directly in the program. 
+"Programmering in C#.NET" at Webbutvecklingsprogrammet, Mittuniversitetet. Users can play the quiz based on category and developers can manage the questions directly in the program. 
 
 ## Features
 
@@ -52,12 +52,12 @@ Program.cs # Main program file <br>
 3. Open the project in Visual Studio Code or in the terminal
 4. Make sure the quiz.db file is located in the project root (same level as Program.cs)
 5. Run the application with the command: dotnet run
-6. Navigate the quiz from the main menu presented in the console. 
+6. Navigate the quiz from the main menu presented in the console
 
 ## Future improvments 
 
 * Save player names and scores to add leaderboard
-* Protect developer view 
+* Better protection of developer view 
 * Add more categories and questions
 * Implement full CRUD-funtionality by adding the option to update a question via the program
 

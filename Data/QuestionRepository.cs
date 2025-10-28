@@ -4,26 +4,28 @@ using static System.Console;
 
 namespace QuizApp.Data
 {
+    // Handles database operations related to quiz quetions
     public static class QuestionRepository
     {
-        // Fetch all questions from the database
+        // Collects all quiz questions from the SQLite database
         public static List<Question> GetAllQuestions()
         {
             var questions = new List<Question>();
 
             try
-
             {
-                // Connect to the database
+                // Open the connection to the quiz.db file
                 using var connection = new SqliteConnection("Data Source=quiz.db");
                 connection.Open();
 
-                // Select all questions
+                // SQL command to retrieve all records from the questions table
                 var sql = "SELECT * FROM questions";
                 using var command = new SqliteCommand(sql, connection);
+
+                // Execute the command
                 using var reader = command.ExecuteReader();
 
-                // Read each row and create Question objects
+                // Loop through each row and map the data to a Question object using reader
                 while (reader.Read())
                 {
                     questions.Add(new Question
@@ -50,9 +52,11 @@ namespace QuizApp.Data
             return questions;
         }
 
-        // Method to insert question into the database
+        // Inserts a new question into the database
+        // Includes validation to prevent saving empty of incomplete entries
         public static void InsertQuestion(Question question)
         {
+            // Ensure all fields are filled put
             if (string.IsNullOrWhiteSpace(question.Category) ||
             string.IsNullOrWhiteSpace(question.Text) ||
             question.Options.Any(option => string.IsNullOrWhiteSpace(option)))
@@ -63,15 +67,15 @@ namespace QuizApp.Data
 
             try
             {
-                // Create and open a connection to the database
+                // Open the connection to the quiz.db file
                 using var connection = new SqliteConnection("Data Source=quiz.db");
                 connection.Open();
 
-                // SQL query to insert a new question
+                // SQL command to insert a new question into the questions table
                 var sql = @"INSERT INTO questions (category, question, first_alternative, second_alternative, third_alternative, fourth_alternative, correct_alternative)
-            VALUES (@category, @question, @first, @second, @third, @fourth, @correct)";
+                          VALUES (@category, @question, @first, @second, @third, @fourth, @correct)";
 
-                // Create a command and bind the parameters to user input (data from the Question object)
+                // Prepare the command by binding the parameters to user input (protection against SQL injections)
                 using var command = new SqliteCommand(sql, connection);
                 command.Parameters.AddWithValue("@category", question.Category);
                 command.Parameters.AddWithValue("@question", question.Text);
@@ -81,7 +85,7 @@ namespace QuizApp.Data
                 command.Parameters.AddWithValue("@fourth", question.Options[3]);
                 command.Parameters.AddWithValue("@correct", question.CorrectOption);
 
-                // Execute the command to insert a new question
+                // Execute the command and return a number of affected rows
                 command.ExecuteNonQuery();
 
                 WriteLine("Question added successfully.");
@@ -91,22 +95,22 @@ namespace QuizApp.Data
                 WriteLine(e.Message);
             }
         }
-
+        
+        // Deletes a question from the database based on ID
         public static void DeleteQuestion(int id)
         {
             try
             {
-                // Create and open a connection to the database
+              // Open the connection to the quiz.db file
                 using var connection = new SqliteConnection("Data Source=quiz.db");
                 connection.Open();
 
-                // SQL query to delete a question based on id
+                // SQL command to delete a question by ID
                 var sql = "DELETE FROM questions WHERE id = @id";
-
                 using var command = new SqliteCommand(sql, connection);
                 command.Parameters.AddWithValue("@id", id);
 
-                // Execute the command to delete a question
+                // Execute the command and ensure at least one row was affected
                 int rows = command.ExecuteNonQuery();
 
                 if (rows > 0)
