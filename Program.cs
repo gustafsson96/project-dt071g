@@ -9,14 +9,14 @@ namespace QuizApp
     {
         public static void Main()
         {
-            // Initialize database
+            // Initialize the SQLite database
             DatabaseConnection.InitializeDatabase();
 
             // Show ASCII art when program starts
             AsciiArt art = new AsciiArt();
             art.collectArt();
 
-            // Show the menu
+            // Launch the main menu
             MainMenu mainMenu = new MainMenu();
             mainMenu.ShowMainMenu();
         }

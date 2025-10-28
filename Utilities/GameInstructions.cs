@@ -2,8 +2,10 @@ using static System.Console;
 
 namespace QuizApp.Utilities
 {
+    // Handles displaying instructions for the game
     public class GameInstructions
     {
+        // Displays quiz instructions as a list
         public void ShowInstructions()
         {
             Clear();
