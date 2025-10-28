@@ -1,17 +1,18 @@
-// CRUD ACTIONS FOR DEVELOPERS
-
 using static System.Console;
 
 namespace QuizApp.Services
 {
+    // Provides CRUD functionality for quiz questions via the developer menu
     public class QuizServices
     {
-        // Show all questions
+        // Display all questions currently stored in the databse
         public void ShowAllQuestions()
         {
+            // Fetch all questions from the database
             var questions = Data.QuestionRepository.GetAllQuestions();
             WriteLine($"Loaded {questions.Count} questions:\n");
 
+            // Loop through each question to display its details
             foreach (var q in questions)
             {
                 WriteLine($"[{q.Category}] {q.Text}");
@@ -21,17 +22,18 @@ namespace QuizApp.Services
                 }
                 WriteLine($"(Correct: {q.CorrectOption})\n");
             }
-            WriteLine("Press any key to return to the menu...");
+
+            WriteLine("Press any key to return to the menu");
             ReadKey();
         }
 
-        // Method to add a new question
+        // Adds a new question to the database
         public void AddQuestion()
         {
             Clear();
             WriteLine("ADD A NEW QUESTION\n");
 
-            // Prompt for user input to add new question
+            // Prompt for category input
             Write("\nEnter category: ");
             string category = ReadLine()!;
             while (string.IsNullOrWhiteSpace(category))
@@ -40,6 +42,7 @@ namespace QuizApp.Services
                 category = ReadLine()!;
             }
 
+            // Prompt for question text
             Write("\nEnter question text: ");
             string questionText = ReadLine()!;
             while (string.IsNullOrWhiteSpace(questionText))
@@ -49,7 +52,7 @@ namespace QuizApp.Services
             }
 
 
-            // Create an array to store the four answer options
+            // Prompt for 4 answer options and store them in an array
             var options = new string[4];
             for (int i = 0; i < 4; i++)
             {
@@ -62,7 +65,8 @@ namespace QuizApp.Services
                 }
             }
 
-            // Ask for correct option
+            
+            // Prompt for the number of the correct option
             int correctOption;
             while (true)
             {
@@ -72,7 +76,7 @@ namespace QuizApp.Services
                 WriteLine("Invalid input, please enter 1, 2, 3, or 4.");
             }
 
-            // Create a new Question object with the inserted data
+            // Create a new Question object with inserted input
             var question = new Models.Question
             {
                 Category = category,
@@ -81,16 +85,17 @@ namespace QuizApp.Services
                 CorrectOption = correctOption
             };
 
-            // Insert the new question into the database using the InsertQuestion method
+            // Insert the new question into the database
             Data.QuestionRepository.InsertQuestion(question);
 
             WriteLine("\nPress any key to return to the menu");
             ReadKey();
         }
 
-        // Method to delete a question 
+        // Delete an existing question from the database
         public void DeleteQuestion()
         {
+            // Fetch all questions
             var questions = Data.QuestionRepository.GetAllQuestions();
 
             if (questions.Count == 0)
@@ -103,6 +108,7 @@ namespace QuizApp.Services
             Clear();
             WriteLine("DELETE A QUESTION\n");
 
+            // List questions with their IDs
             foreach (var q in questions)
             {
                 WriteLine($"{q.Id}. [{q.Category}] {q.Text}");
@@ -121,7 +127,7 @@ namespace QuizApp.Services
                 Write("Invalid input. Please enter a number");
             }
 
-            // Call the method to delete the question from the database
+            // Delete the question from the database
             Data.QuestionRepository.DeleteQuestion(idToDelete);
 
             WriteLine("\nPress any key to return to the menu");

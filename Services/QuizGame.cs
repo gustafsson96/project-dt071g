@@ -1,5 +1,3 @@
-// QUIZ LOGIC
-
 using QuizApp.Data;
 using QuizApp.Menus;
 using static System.Console;
@@ -7,11 +5,12 @@ using System.Threading;
 
 namespace QuizApp.Services
 {
+    // Handles the main quiz logic
     public class QuizGame
     {
         private readonly Random random = new Random();
 
-        // Method to start quiz for the selected category
+        // Starts the quiz for a selected category
         public void StartQuiz(string category)
         {
             // Get a list of all questions
@@ -25,22 +24,23 @@ namespace QuizApp.Services
                 return;
             }
 
-            // Select 10 random questions for current round
+            // Select 10 shuffled questions for current quiz round
             var quizQuestions = questions.OrderBy(q => random.Next()).Take(10).ToList();
 
-            // Run the quiz and calculate the score
+            // Run quiz and calculate score
             int score = PlayQuiz(quizQuestions);
 
-            // Show the final score and ask if user wants to play again
+            // Show results and ask if user wants to play again
             ShowResults(score, quizQuestions.Count);
             AskToPlayAgain();
         }
 
-        // Method to load all questions and filter by category if needed
+        // Load all questions from database and filter if needed
         private List<Models.Question> LoadQuestions(string category)
         {
             var questions = QuestionRepository.GetAllQuestions();
 
+            // If category is not "mixed", filter by selected category
             if (category != "mixed")
             {
                 questions = questions.Where(q => q.Category.ToLower() == category).ToList();
@@ -49,7 +49,7 @@ namespace QuizApp.Services
             return questions;
         }
 
-        // Method to loop through the selected questions and present them to user
+        // Loop through the selected questions and displays them to user one by one
         private int PlayQuiz(List<Models.Question> questions)
         {
             int score = 0;
@@ -65,6 +65,7 @@ namespace QuizApp.Services
 
                 int answer = GetAnswer(q.Options.Length);
 
+                // Check if answer is correct
                 if (answer == q.CorrectOption)
                 {
                     WriteLine("\nCorrect!");
@@ -82,7 +83,7 @@ namespace QuizApp.Services
             return score;
         }
 
-        // Method to read and validate user input
+        // Reads and validates the selected answer from the user
         private int GetAnswer(int numberOfOptions)
         {
             Write("\nYour answer: ");
@@ -97,7 +98,7 @@ namespace QuizApp.Services
 
         }
 
-        // Method to display final score with simulated animation
+        // Displays the final score with simulated "Calculating..." animation
         private void ShowResults(int score, int total)
         {
             WriteLine("\n\nQuiz finished! Calculating your results ");
@@ -110,7 +111,7 @@ namespace QuizApp.Services
             WriteLine($"You scored: {score}/{total}\n");
         }
 
-        // Method to ask if user wants to play again (restart quiz or return to menu)
+        // Asks if user wants to play again (restart quiz or return to main menu)
         private void AskToPlayAgain()
         {
             while (true)
