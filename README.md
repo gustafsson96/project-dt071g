@@ -19,21 +19,21 @@ QuizApp is a console-based quiz applicaiton created using C#.NET with a SQLite d
 * View protected by a developer password.
 
 ## Project structure
-Data/DatabaseConnection.cs # Initial database connection
-Data/QuestionRepository.cs # CRUD for developers
-Menus/MainMenu.cs # Main menu of the program
-Menus/GameMenu.cs # Menu to pick what category to play 
-Menus/DeveloperMenu.cs # Developer menu
-Models/Questions.cs # Questions model
-Security/PasswordValidator.cs # Validate developer password
-Security/RequestAccess.cs # Prompt for developer password
-Services/QuizGame.cs # Quiz logic
-Services/QuizService.cs # Developer functionality (view for CRUD actions)
-Utilities/AsciiArt.cs # Handles ASCII art presented when program starts
-Utilities/asciiart.txt # The actual ASCII art "QUIZ IT UP!"
-Utilites/GameInstructions.cs # Game instructions
-quiz.db # Database file
-Program.cs # Main program file
+Data/DatabaseConnection.cs # Initial database connection <br>
+Data/QuestionRepository.cs # CRUD for developers <br>
+Menus/MainMenu.cs # Main menu of the program <br>
+Menus/GameMenu.cs # Menu to pick what category to play <br>
+Menus/DeveloperMenu.cs # Developer menu <br>
+Models/Questions.cs # Questions model <br>
+Security/PasswordValidator.cs # Validate developer password <br>
+Security/RequestAccess.cs # Prompt for developer password <br>
+Services/QuizGame.cs # Quiz logic <br>
+Services/QuizService.cs # Developer functionality (view for CRUD actions) <br>
+Utilities/AsciiArt.cs # Handles ASCII art presented when program starts <br>
+Utilities/asciiart.txt # The actual ASCII art "QUIZ IT UP!" <br>
+Utilites/GameInstructions.cs # Game instructions <br>
+quiz.db # Database file <br>
+Program.cs # Main program file <br>
 
 
 ## Technologies used
